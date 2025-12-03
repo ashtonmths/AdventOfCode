@@ -61,6 +61,59 @@ def get_aoc_stats(session_cookie, year=None):
         traceback.print_exc()
         return None
 
+def create_day_folder(year, day):
+    """Create folder structure for a new day."""
+    day_str = f"{day:02d}"
+    folder_path = f"{year}/day{day_str}"
+    
+    # Create directory if it doesn't exist
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+        print(f"Created folder: {folder_path}")
+        
+        # Create Solution.java template
+        solution_content = f"""import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+
+public class Solution {{
+    
+    public static void main(String[] args) throws IOException {{
+        String input = Files.readString(Paths.get("{year}/day{day_str}/input.txt")).trim();
+        
+        System.out.println("Part 1: " + part1(input));
+        System.out.println("Part 2: " + part2(input));
+    }}
+    
+    private static String part1(String input) {{
+        List<String> lines = Arrays.asList(input.split("\\n"));
+        // TODO: Implement part 1
+        return "";
+    }}
+    
+    private static String part2(String input) {{
+        List<String> lines = Arrays.asList(input.split("\\n"));
+        // TODO: Implement part 2
+        return "";
+    }}
+}}
+"""
+        
+        solution_path = f"{folder_path}/Solution.java"
+        with open(solution_path, 'w') as f:
+            f.write(solution_content)
+        print(f"Created file: {solution_path}")
+        
+        # Create empty input.txt
+        input_path = f"{folder_path}/input.txt"
+        with open(input_path, 'w') as f:
+            f.write("")
+        print(f"Created file: {input_path}")
+    else:
+        print(f"Folder already exists: {folder_path}")
+
 def update_readme(stars_dict, year):
     """Update README.md with the latest stats."""
     if not stars_dict:
@@ -145,6 +198,10 @@ def update_readme(stars_dict, year):
             star_display = "⭐⭐" if stars == 2 else "⭐❓" if stars == 1 else "❓❓"
             status = "✅" if stars == 2 else "⏳" if stars == 1 else "❓"
             day_str = f"{day:02d}"
+            
+            # Create folder structure if it doesn't exist and day is new
+            if day not in existing_days:
+                create_day_folder(year, day)
             
             row = f'| [Day {day}]({year}/day{day_str}) | {star_display} | [Java]({year}/day{day_str}/Solution.java) | {status} |'
             new_rows.append(row)

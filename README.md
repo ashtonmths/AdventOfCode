@@ -5,8 +5,8 @@
 ![Advent of Code Banner](https://cdn.thenewstack.io/media/2021/12/521cd034-advent-of-code-2021.jpg)
 
 ![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-2025-brightgreen)
-![Stars](https://img.shields.io/badge/stars%20⭐-2-yellow)
-![Days Completed](https://img.shields.io/badge/days%20completed-1-blue)
+![Stars](https://img.shields.io/badge/stars%20⭐-4-yellow)
+![Days Completed](https://img.shields.io/badge/days%20completed-2-blue)
 ![Language](https://img.shields.io/badge/language-Java-orange)
 
 </div>
@@ -20,7 +20,7 @@ My solutions to [Advent of Code 2025](https://adventofcode.com/2025) challenges!
 | Day | Stars | Solution | Status |
 |-----|-------|----------|--------|
 | [Day 1](2025/day01) | ⭐⭐ | [Java](2025/day01/Solution.java) | ✅ |
-| [Day 2](2025/day02) | ❓❓ | [Java](2025/day02/Solution.java) | ❓ |
+| [Day 2](2025/day02) | ⭐⭐ | [Java](2025/day02/Solution.java) | ✅ |
 | [Day 3](2025/day03) | ❓❓ | [Java](2025/day03/Solution.java) | ❓ |
 ---
 
@@ -34,8 +34,8 @@ java Solution
 
 ## ⭐ Progress
 
-- **Total Stars:** 2/50
-- **Days Completed:** 1/25
+- **Total Stars:** 4/50
+- **Days Completed:** 2/25
 
 ---
 

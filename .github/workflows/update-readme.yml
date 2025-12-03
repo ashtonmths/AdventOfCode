@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: '0 5 * 12 *'  # Run at 10:30 AM IST (5:00 AM UTC) every day in December
   workflow_dispatch:  # Allow manual trigger
+  push:
+    branches:
+      - main
 
 jobs:
   update-readme:
@@ -37,4 +40,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add README.md
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🎄 Update README with latest AoC progress" && git push)
+          git add */day*/Solution.java */day*/input.txt
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🎄 Update README with latest AoC progress and create new day folders" && git push)

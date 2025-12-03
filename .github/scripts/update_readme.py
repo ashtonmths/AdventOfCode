@@ -191,7 +191,7 @@ def update_readme(stars_dict, year):
         
         print(f"DEBUG: Existing days in table: {sorted(existing_days)}")
         
-        # Build new table rows
+        # Build new table rows and create folders for released days
         new_rows = []
         for day in range(1, last_released_day + 1):
             stars = stars_dict.get(day, 0)
@@ -199,8 +199,9 @@ def update_readme(stars_dict, year):
             status = "✅" if stars == 2 else "⏳" if stars == 1 else "❓"
             day_str = f"{day:02d}"
             
-            # Create folder structure if it doesn't exist and day is new
-            if day not in existing_days:
+            # Create folder structure if the folder doesn't exist
+            folder_path = f"{year}/day{day_str}"
+            if not os.path.exists(folder_path):
                 create_day_folder(year, day)
             
             row = f'| [Day {day}]({year}/day{day_str}) | {star_display} | [Java]({year}/day{day_str}/Solution.java) | {status} |'

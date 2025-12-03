@@ -24,6 +24,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+      
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
           
       - name: Install dependencies
         run: |
@@ -34,6 +40,23 @@ jobs:
           AOC_SESSION: ${{ secrets.AOC_SESSION }}
         run: |
           python .github/scripts/update_readme.py
+      
+      - name: Compile Java solutions
+        run: |
+          echo "Compiling Java solutions..."
+          for dir in */day*/; do
+            if [ -f "${dir}Solution.java" ]; then
+              echo "Compiling ${dir}Solution.java"
+              cd "$dir"
+              if javac Solution.java 2>/dev/null; then
+                echo "✅ ${dir}Solution.java compiled successfully"
+                rm -f *.class
+              else
+                echo "❌ ${dir}Solution.java failed to compile"
+              fi
+              cd - > /dev/null
+            fi
+          done
           
       - name: Commit and push if changed
         run: |

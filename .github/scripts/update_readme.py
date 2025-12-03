@@ -83,20 +83,23 @@ public class Solution {{
     public static void main(String[] args) throws IOException {{
         String input = Files.readString(Paths.get("{year}/day{day_str}/input.txt")).trim();
         
-        System.out.println("Part 1: " + part1(input));
-        System.out.println("Part 2: " + part2(input));
+        int[] results = solve(input);
+        System.out.println("Part 1: " + results[0]);
+        System.out.println("Part 2: " + results[1]);
     }}
     
-    private static String part1(String input) {{
+    private static int[] solve(String input) {{
         List<String> lines = Arrays.asList(input.split("\\n"));
-        // TODO: Implement part 1
-        return "";
-    }}
-    
-    private static String part2(String input) {{
-        List<String> lines = Arrays.asList(input.split("\\n"));
-        // TODO: Implement part 2
-        return "";
+        
+        int part1 = 0;
+        int part2 = 0;
+        
+        // TODO: Implement solution for both parts
+        for (String line : lines) {{
+            // Process each line
+        }}
+        
+        return new int[]{{part1, part2}};
     }}
 }}
 """

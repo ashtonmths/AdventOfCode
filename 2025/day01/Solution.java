@@ -14,34 +14,47 @@ public class Solution {
     }
     
     private static int part1(String input) {
-        List<String> arr = Arrays.asList(input.split("\n"));
+        List<String> lines = Arrays.asList(input.split("\n"));
         int dial = 50;
         int count = 0;
-        for(String move : arr) {
-            char[] str = move.toCharArray();
-            if(str[0]=='L') {
-                String val = "";
-                for (int i = 1; i < str.length; i++) {
-                    val += str[i]; 
-                }
-                int number = Integer.parseInt(val);
-                dial = ((dial - number)%100 + 100)%100;
+        
+        for (String move : lines) {
+            char direction = move.charAt(0);
+            int distance = Integer.parseInt(move.substring(1));
+            if (direction == 'L') {
+                dial = ((dial - distance) % 100 + 100) % 100;
             } else {
-                String val = "";
-                for (int i = 1; i < str.length; i++) {
-                    val += str[i]; 
-                }
-                int number = Integer.parseInt(val);
-                dial = (dial + number)%100;
+                dial = (dial + distance) % 100;
             }
-            if(dial==0) {
+            if (dial == 0) {
                 count++;
             }
         }
+        
         return count;
     }
     
-    private static String part2(String input) {
-        return "null";
+    private static int part2(String input) {
+        List<String> lines = Arrays.asList(input.split("\n"));
+        int dialPosition = 50;
+        int zeroCount = 0;
+        
+        for (String rotation : lines) {
+            char direction = rotation.charAt(0);
+            int distance = Integer.parseInt(rotation.substring(1));
+            
+            for (int i = 1; i <= distance; i++) {
+                if (direction == 'L') {
+                    dialPosition = (dialPosition - 1 + 100) % 100;
+                } else if (direction == 'R') {
+                    dialPosition = (dialPosition + 1) % 100;
+                }
+                
+                if (dialPosition == 0) {
+                    zeroCount++;
+                }
+            }
+        }
+        return zeroCount;
     }
 }

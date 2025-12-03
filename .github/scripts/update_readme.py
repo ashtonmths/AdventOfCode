@@ -81,7 +81,7 @@ import java.util.List;
 public class Solution {{
     
     public static void main(String[] args) throws IOException {{
-        String input = Files.readString(Paths.get("{year}/day{day_str}/input.txt")).trim();
+        String input = Files.readString(Paths.get("input.txt")).trim();
         
         System.out.println("Part 1: " + part1(input));
         System.out.println("Part 2: " + part2(input));

@@ -34,9 +34,34 @@ public class Solution {
         return totalSum;
     }
 
-    private static int part2(String input) {
-        // List<String> lines = Arrays.asList(input.split("\n"));
-
-        return 0;
+    private static long part2(String input) {
+        List<String> lines = Arrays.asList(input.split("\n"));
+        long totalSum = 0;
+        
+        for (String line : lines) {
+            StringBuilder result = new StringBuilder();
+            int pos = 0;
+            
+            for (int digitCount = 0; digitCount < 12; digitCount++) {
+                int maxDigit = -1;
+                int maxPos = pos;
+                int searchLimit = line.length() - (12 - digitCount - 1);
+                
+                for (int i = pos; i < searchLimit; i++) {
+                    int digit = Character.getNumericValue(line.charAt(i));
+                    if (digit > maxDigit) {
+                        maxDigit = digit;
+                        maxPos = i;
+                    }
+                }
+                
+                result.append(maxDigit);
+                pos = maxPos + 1;
+            }
+            
+            totalSum += Long.parseLong(result.toString());
+        }
+        
+        return totalSum;
     }
 }

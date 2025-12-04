@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,20 +34,22 @@ public class Solution {
         int accessible = 0;
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
-                if (grid[r][c] != '@') continue;
+                if (grid[r][c] != '@')
+                    continue;
                 int neighborCount = 0;
                 for (int[] n : neighborhood) {
                     int nr = r + n[0];
                     int nc = c + n[1];
 
-                    if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) continue;
+                    if (nr < 0 || nr >= rows || nc < 0 || nc >= cols)
+                        continue;
                     char neighbor = grid[nr][nc];
-                    if(neighbor == '@') {
+                    if (neighbor == '@') {
                         neighborCount++;
                     }
                 }
                 if (neighborCount < 4) {
-                   accessible++;
+                    accessible++;
                 }
             }
         }
@@ -56,6 +59,44 @@ public class Solution {
 
     private static int part2(String input) {
         List<String> lines = Arrays.asList(input.split("\n"));
-        return 0;
+        int rows = lines.size();
+        int cols = lines.get(0).length();
+        char[][] grid = new char[rows][cols];
+        for (int r = 0; r < rows; r++) {
+            String line = lines.get(r);
+            for (int c = 0; c < cols; c++) {
+                grid[r][c] = line.charAt(c);
+            }
+        }
+        int totalRemoved = 0;
+        while (true) {
+            List<int[]> toRemove = new ArrayList<>();
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    if (grid[r][c] != '@')
+                        continue;
+                    int neighborCount = 0;
+                    for (int[] n : neighborhood) {
+                        int nr = r + n[0];
+                        int nc = c + n[1];
+                        if (nr < 0 || nr >= rows || nc < 0 || nc >= cols)
+                            continue;
+                        if (grid[nr][nc] == '@')
+                            neighborCount++;
+                    }
+                    if (neighborCount < 4) {
+                        toRemove.add(new int[] { r, c });
+                    }
+                }
+            }
+            if (toRemove.isEmpty()) {
+                break;
+            }
+            for (int[] pos : toRemove) {
+                grid[pos[0]][pos[1]] = '.';
+            }
+            totalRemoved += toRemove.size();
+        }
+        return totalRemoved;
     }
 }

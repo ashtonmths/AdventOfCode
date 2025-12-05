@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class Solution {
@@ -56,7 +57,42 @@ public class Solution {
 
     private static long part2(String input) {
         List<String> lines = Arrays.asList(input.split("\n"));
-        // TODO: Implement part 2
-        return 0;
+        List<long[]> ranges = new ArrayList<>();
+    
+        boolean beforeBlank = true;
+        for (String line : lines) {
+            if (line.isEmpty()) {
+                beforeBlank = false;
+                continue;
+            }
+            if (beforeBlank) {
+                String[] parts = line.split("-");
+                long start = Long.parseLong(parts[0]);
+                long end   = Long.parseLong(parts[1]);
+                ranges.add(new long[]{ start, end });
+            }
+        }
+        ranges.sort(Comparator.comparingLong(a -> a[0]));
+    
+        List<long[]> merged = new ArrayList<>();
+        long[] current = ranges.get(0);
+    
+        for (int i = 1; i < ranges.size(); i++) {
+            long[] next = ranges.get(i);
+    
+            if (next[0] <= current[1] + 1) {
+                current[1] = Math.max(current[1], next[1]);
+            } else {
+                merged.add(current);
+                current = next;
+            }
+        }
+        merged.add(current);
+        long freshCount = 0;
+        for (long[] r : merged) {
+            freshCount += (r[1] - r[0] + 1);
+        }
+    
+        return freshCount;
     }
 }

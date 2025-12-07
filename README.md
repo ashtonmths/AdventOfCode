@@ -25,6 +25,7 @@ My solutions to [Advent of Code 2025](https://adventofcode.com/2025) challenges!
 | [Day 4](2025/day04) | ⭐⭐ | [Java](2025/day04/Solution.java) | ✅ |
 | [Day 5](2025/day05) | ⭐⭐ | [Java](2025/day05/Solution.java) | ✅ |
 | [Day 6](2025/day06) | ❓❓ | [Java](2025/day06/Solution.java) | ❓ |
+| [Day 7](2025/day07) | ❓❓ | [Java](2025/day07/Solution.java) | ❓ |
 ---
 
 ## 🚀 Running Solutions

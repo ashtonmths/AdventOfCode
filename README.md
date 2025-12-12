@@ -30,6 +30,7 @@ My solutions to [Advent of Code 2025](https://adventofcode.com/2025) challenges!
 | [Day 9](2025/day09) | ❓❓ | [Java](2025/day09/Solution.java) | ❓ |
 | [Day 10](2025/day10) | ❓❓ | [Java](2025/day10/Solution.java) | ❓ |
 | [Day 11](2025/day11) | ❓❓ | [Java](2025/day11/Solution.java) | ❓ |
+| [Day 12](2025/day12) | ❓❓ | [Java](2025/day12/Solution.java) | ❓ |
 ---
 
 ## 🚀 Running Solutions

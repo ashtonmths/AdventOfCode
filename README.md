@@ -43,8 +43,8 @@ java Solution
 
 ## ⭐ Progress
 
-- **Total Stars:** 10/24
-- **Days Completed:** 5/12
+- **Total Stars:** 12/24
+- **Days Completed:** 6/12
 
 ---
 

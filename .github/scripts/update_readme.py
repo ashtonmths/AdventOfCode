@@ -147,14 +147,14 @@ def update_readme(stars_dict, year):
     
     # Update progress section
     content = re.sub(
-        r'\*\*Total Stars:\*\* \d+/50',
-        f'**Total Stars:** {total_stars}/50',
+        r'\*\*Total Stars:\*\* \d+/24',
+        f'**Total Stars:** {total_stars}/24',
         content
     )
     
     content = re.sub(
-        r'\*\*Days Completed:\*\* \d+/25',
-        f'**Days Completed:** {days_completed}/25',
+        r'\*\*Days Completed:\*\* \d+/12',
+        f'**Days Completed:** {days_completed}/12',
         content
     )
     

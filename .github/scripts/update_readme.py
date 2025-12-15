@@ -9,6 +9,18 @@ import re
 import requests
 from datetime import datetime
 
+# Configuration: Set max days per year
+# 2025: 12 days only
+# Future years: Update this when starting a new year
+YEAR_CONFIG = {
+    2025: 12,
+    # Add future years here, e.g., 2026: 25
+}
+
+def get_max_days_for_year(year):
+    """Get the maximum number of days for a given year."""
+    return YEAR_CONFIG.get(year, 25)  # Default to 25 if year not configured
+
 def get_aoc_stats(session_cookie, year=None):
     """Fetch stats from Advent of Code API."""
     # Auto-detect current year if not specified
@@ -128,8 +140,11 @@ def update_readme(stars_dict, year):
     # Calculate totals
     total_stars = sum(stars_dict.values())
     days_completed = sum(1 for s in stars_dict.values() if s == 2)
+    max_days = get_max_days_for_year(year)
+    max_stars = max_days * 2
     
     print(f"DEBUG: Updating README with {total_stars} stars, {days_completed} days completed")
+    print(f"DEBUG: Max days for {year}: {max_days}, Max stars: {max_stars}")
     print(f"DEBUG: Stars breakdown: {stars_dict}")
     
     # Update badges
@@ -147,14 +162,14 @@ def update_readme(stars_dict, year):
     
     # Update progress section
     content = re.sub(
-        r'\*\*Total Stars:\*\* \d+/24',
-        f'**Total Stars:** {total_stars}/24',
+        r'\*\*Total Stars:\*\* \d+/\d+',
+        f'**Total Stars:** {total_stars}/{max_stars}',
         content
     )
     
     content = re.sub(
-        r'\*\*Days Completed:\*\* \d+/12',
-        f'**Days Completed:** {days_completed}/12',
+        r'\*\*Days Completed:\*\* \d+/\d+',
+        f'**Days Completed:** {days_completed}/{max_days}',
         content
     )
     
@@ -168,7 +183,8 @@ def update_readme(stars_dict, year):
     
     # Only in December
     if now_est.month == 12 and now_est.year == year:
-        last_released_day = min(now_est.day, 25)  # AoC runs Dec 1-25
+        max_days = get_max_days_for_year(year)
+        last_released_day = min(now_est.day, max_days)  # AoC runs Dec 1-X based on config
     else:
         last_released_day = 0
     

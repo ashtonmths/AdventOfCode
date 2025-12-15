@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,10 +14,13 @@ public class Solution {
         System.out.println("Part 2: " + part2(input));
     }
     
-    private static String part1(String input) {
+    private static long part1(String input) {
         List<String> lines = Arrays.asList(input.split("\n"));
-        // TODO: Implement part 1
-        return "";
+        List<Integer> numbers = new ArrayList<>()
+        for (String line : lines) { 
+            
+        }
+        return numbers[0];
     }
     
     private static String part2(String input) {

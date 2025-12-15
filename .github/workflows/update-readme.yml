@@ -1,4 +1,4 @@
-name: Update README with AoC Progress
+name: AoC Progress Tracker
 
 on:
   schedule:
